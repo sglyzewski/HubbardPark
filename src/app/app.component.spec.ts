@@ -13,15 +13,15 @@ describe('AppComponent', () => {
     const app = fixture.debugElement.componentInstance;
     expect(app).toBeTruthy();
   }));
-  it(`should have as title 'hubbard-park'`, async(() => {
+  it(`should have as title 'where the rubber meets the road'`, async(() => {
     const fixture = TestBed.createComponent(AppComponent);
     const app = fixture.debugElement.componentInstance;
-    expect(app.title).toEqual('hubbard-park');
+    expect(app.title).toEqual('where the rubber meets the road');
   }));
   it('should render title in a h1 tag', async(() => {
     const fixture = TestBed.createComponent(AppComponent);
     fixture.detectChanges();
     const compiled = fixture.debugElement.nativeElement;
-    expect(compiled.querySelector('h1').textContent).toContain('Welcome to hubbard-park!');
+    expect(compiled.querySelector('h1').textContent).toContain('Welcome to where the rubber meets the road!');
   }));
 });
