@@ -27,6 +27,8 @@
 # IDE - VisualStudio
 /HubbardParkApi/.vs/*
 /HubbardParkApi/HubbardParkApi.v3.ncrunchsolution.user
+/HubbardParkApi/bin
+/HubbardParkApi/obj
 
 # misc
 /.sass-cache
