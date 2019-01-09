@@ -28,7 +28,7 @@
 /HubbardParkApi/.vs/*
 /HubbardParkApi/HubbardParkApi.v3.ncrunchsolution.user
 /HubbardParkApi/bin
-/HubbardParkApi/obj/*
+obj
 
 # misc
 /.sass-cache
