@@ -25,9 +25,9 @@
 !.vscode/extensions.json
 
 # IDE - VisualStudio
-/HubbardParkApi/.vs/*
-/HubbardParkApi/HubbardParkApi.v3.ncrunchsolution.user
-/HubbardParkApi/bin
+HubbardParkApi/.vs/*
+HubbardParkApi.v3.ncrunchsolution.user
+bin
 obj
 
 # misc
