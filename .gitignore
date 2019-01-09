@@ -24,6 +24,10 @@
 !.vscode/launch.json
 !.vscode/extensions.json
 
+# IDE - VisualStudio
+/HubbardParkApi/.vs/*
+/HubbardParkApi/HubbardParkApi.v3.ncrunchsolution.user
+
 # misc
 /.sass-cache
 /connect.lock
