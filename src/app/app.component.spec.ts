@@ -16,7 +16,7 @@ describe('AppComponent', () => {
   it(`should have as title 'where the rubber does not meet the road'`, async(() => {
     const fixture = TestBed.createComponent(AppComponent);
     const app = fixture.debugElement.componentInstance;
-    expect(app.title).toEqual('where the rubber does not meet the road');
+    expect(app.title).toEqual('where the rubber does not meet the rubber');
   }));
   it('should render title in a h1 tag', async(() => {
     const fixture = TestBed.createComponent(AppComponent);
