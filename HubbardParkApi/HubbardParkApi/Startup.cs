@@ -1,9 +1,14 @@
+using System;
+using System.IO;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Rewrite;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Logging;
+using NLog;
+using NLog.Extensions.Logging;
 using Swashbuckle.AspNetCore.Swagger;
 
 namespace HubbardParkApi
@@ -30,6 +35,14 @@ namespace HubbardParkApi
           Description = "An Awesome API",
         });
       });
+
+      var serviceProvider = services
+        .AddLogging(builder => builder.SetMinimumLevel(Microsoft.Extensions.Logging.LogLevel.Trace))
+        .BuildServiceProvider();
+
+      var factory = serviceProvider.GetService<ILoggerFactory>();
+      factory.AddNLog(new NLogProviderOptions { CaptureMessageTemplates = true, CaptureMessageProperties = true });
+      LogManager.Configuration = new NLog.Config.XmlLoggingConfiguration(Path.Combine(AppContext.BaseDirectory, "nlog.config"), true);
     }
 
     // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
