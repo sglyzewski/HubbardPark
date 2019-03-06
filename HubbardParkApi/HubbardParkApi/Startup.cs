@@ -15,9 +15,13 @@ namespace HubbardParkApi
 {
   public class Startup
   {
-    public Startup(IConfiguration configuration)
+    public Startup(IHostingEnvironment env)
     {
-      Configuration = configuration;
+      var builder = new ConfigurationBuilder()
+        .SetBasePath(env.ContentRootPath)
+        .AddJsonFile("config.json", optional: true, reloadOnChange: true);
+      Configuration = builder.Build();
+
     }
 
     public IConfiguration Configuration { get; }
@@ -40,6 +44,16 @@ namespace HubbardParkApi
         .AddLogging(builder => builder.SetMinimumLevel(Microsoft.Extensions.Logging.LogLevel.Trace))
         .BuildServiceProvider();
 
+      var origins = Configuration.GetSection("Cors:Origins").Get<string[]>();
+      services.AddCors(options =>
+      {
+        options.AddPolicy("MyCoolCors",
+          builder => builder.WithOrigins(origins)
+            .AllowAnyHeader()
+            .AllowAnyMethod()
+            .AllowCredentials());
+      });
+
       var factory = serviceProvider.GetService<ILoggerFactory>();
       factory.AddNLog(new NLogProviderOptions { CaptureMessageTemplates = true, CaptureMessageProperties = true });
       LogManager.Configuration = new NLog.Config.XmlLoggingConfiguration(Path.Combine(AppContext.BaseDirectory, "nlog.config"), true);
@@ -58,6 +72,7 @@ namespace HubbardParkApi
       }
 
       app.UseHttpsRedirection();
+      app.UseCors("MyCoolCors");
       app.UseMvc();
 
       app.UseSwagger();
